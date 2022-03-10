@@ -1,0 +1,38 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "make-models": "npx sequelize-cli model:generate --name User --attributes firstName:string,lastName:string,email:string",
+    "make-seed": "npx sequelize-cli seed:generate --name demo-user",
+    "migrate-up": "npx  sequelize-cli db:migrate --config ./src/configs/sequelize.config.json --migrations-path ./src/migrations --seeders-path ./src/seeders --models-path ./src/models",
+    "migrate-down": "npx sequelize-cli db:migrate:undo --config ./src/configs/sequelize.config.json --migrations-path ./src/migrations --seeders-path ./src/seeders --models-path ./src/models",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "errorhandler": "^1.5.1",
+    "express": "^4.17.2",
+    "express-session": "^1.17.2",
+    "helmet": "^5.0.2",
+    "jsonwebtoken": "^8.5.1",
+    "passport": "^0.5.2",
+    "passport-local": "^1.0.0",
+    "pg": "^8.7.3",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.16.2"
+  },
+  "devDependencies": {
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.15",
+    "sequelize-cli": "^6.4.1"
+  }
+}
