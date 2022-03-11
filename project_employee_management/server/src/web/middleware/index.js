@@ -10,7 +10,6 @@ const User = user_model(sequelize, DataTypes);
 exports.verifyJWT = (req, res, next) => {
   try {
     const token = req.session.token;
-    console.log(token);
     if (!token) {
       res.send("You need a token to access this");
     } else {
