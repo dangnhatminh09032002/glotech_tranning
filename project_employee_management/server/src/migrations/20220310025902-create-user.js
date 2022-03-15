@@ -1,7 +1,7 @@
 "use strict";
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("Users", {
+    await queryInterface.createTable("users", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -10,10 +10,6 @@ module.exports = {
       },
       userName: {
         unique: true,
-        allowNull: false,
-        type: Sequelize.STRING,
-      },
-      passWord: {
         allowNull: false,
         type: Sequelize.STRING,
       },
@@ -30,7 +26,29 @@ module.exports = {
       },
     });
 
-    await queryInterface.createTable("Employees", {
+    await queryInterface.createTable("departments", {
+      id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: Sequelize.INTEGER,
+      },
+      name: {
+        type: Sequelize.STRING,
+      },
+      description: {
+        type: Sequelize.STRING,
+      },
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DATE,
+      },
+      updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE,
+      },
+    });
+    await queryInterface.createTable("employees", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -46,8 +64,12 @@ module.exports = {
       email: {
         type: Sequelize.STRING,
       },
-      department: {
-        type: Sequelize.STRING,
+      departmentId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: "departments",
+          key: "id",
+        },
       },
       deleted: {
         type: Sequelize.BOOLEAN,
@@ -64,7 +86,8 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("Users");
-    await queryInterface.dropTable("Employees");
+    await queryInterface.dropTable("users");
+    await queryInterface.dropTable("employees");
+    await queryInterface.dropTable("departments");
   },
 };

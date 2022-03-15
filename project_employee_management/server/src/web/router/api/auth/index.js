@@ -3,8 +3,8 @@ const middleware = require("../../../middleware");
 
 //---- all: "./api/auth" ----//
 authRouter.get("/verify", middleware.verifyJWT, (req, res, next) => {
-  res.status(200).json({ auth: true, message: "Token is valid" });
+  res.json({ httpStatus: 200, body: true, message: "Verified" });
 });
-authRouter.use("/", require("./auth"));
+authRouter.use("/", require("./auth.router"));
 
 module.exports = authRouter;

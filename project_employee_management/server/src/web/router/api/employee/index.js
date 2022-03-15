@@ -1,6 +1,6 @@
 const employeeRouter = require("express").Router();
-const employeeController = require("../../../controllers/employee");
-const middlewareWrapper = require("../../middleware");
+const employeeController = require("../../../../controllers/employee.controller");
+const middlewareWrapper = require("../../../middleware");
 
 //---- all: "./api/employees" ----//
 employeeRouter.use("/", middlewareWrapper.verifyJWT);
